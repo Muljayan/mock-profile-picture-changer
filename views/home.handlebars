@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="text-center display-4 my-4">Select Profile Picture</h1>
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <div class="custom-file mb-3">
+                    <input type="file" name="file" id="file" class="custom-file-input">
+                    <label for="file" class="custom-file-label">Choose File</label>
+                </div>
+                <input type="submit" value="Submit" class="btn btn-primary btn-block">
+            </form>
+        </div>
+        <div class="col-md-4 profilePic mx-auto my-4">
+            {{#if files}}
+            <!--Loop through files-->
+            {{#each files}}
+            <div class="card card-body mb-3 image">
+                <img src="image/{{this.filename}}">
+                <form method="POST" action="/files/{{this._id}}?_method=DELETE">
+                    <button class="btn btn-danger btn-block mt-4">Delete</button>
+                </form>
+            </div>
+            {{/each}} {{else}}
+            <p>No profile picture selected</p>
+            {{/if}}
+        </div>
+    </div>
+</div>
